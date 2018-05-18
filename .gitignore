@@ -1,4 +1,14 @@
-data/
+data/movies/*
+!data/movies/downloadAndUnzipFasttextVectors
+!data/movies/downloadAndUnzipMovieData
+
+data/semeval/*
+!data/semeval/downloadAndUnzipGloveVectors
+!data/semeval/downloadAndUnzipSemEvalData
+!data/semeval/preprocess-twitter.rb
+!data/semeval/processGloveVectors
+!data/semeval/processGloveVectors
+!data/semeval/processSemEvalData
 
 ##################
 # PYTHON gitignore

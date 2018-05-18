@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# create the processed directory
+mkdir processed
+
+# process the test data and output to test.txt
+cat semeval2017-task4-test/SemEval2017-task4-test.subtask-A.english.txt | ruby -n preprocess-twitter.rb > processed/test.txt
+
+# process some of the training data and output to twitter-2016test-A.txt
+cat 2017_English_final/GOLD/Subtask_A/twitter-2016test-A.txt | ruby -n preprocess-twitter.rb > processed/twitter-2016test-A.txt
+
+# process the rest of the training data and output to aggregate.txt
+cat 2017_English_final/GOLD/Subtask_A/twitter-2013dev-A.txt | ruby -n preprocess-twitter.rb > processed/aggregate.txt
+cat 2017_English_final/GOLD/Subtask_A/twitter-2013test-A.txt | ruby -n preprocess-twitter.rb >> processed/aggregate.txt
+cat 2017_English_final/GOLD/Subtask_A/twitter-2013train-A.txt | ruby -n preprocess-twitter.rb >> processed/aggregate.txt
+cat 2017_English_final/GOLD/Subtask_A/twitter-2014test-A.txt | ruby -n preprocess-twitter.rb >> processed/aggregate.txt
+cat 2017_English_final/GOLD/Subtask_A/twitter-2015test-A.txt | ruby -n preprocess-twitter.rb >> processed/aggregate.txt
+cat 2017_English_final/GOLD/Subtask_A/twitter-2015train-A.txt | ruby -n preprocess-twitter.rb >> processed/aggregate.txt
+cat 2017_English_final/GOLD/Subtask_A/twitter-2016dev-A.txt | ruby -n preprocess-twitter.rb >> processed/aggregate.txt
+cat 2017_English_final/GOLD/Subtask_A/twitter-2016devtest-A.txt | ruby -n preprocess-twitter.rb >> processed/aggregate.txt
+cat 2017_English_final/GOLD/Subtask_A/twitter-2016train-A.txt | ruby -n preprocess-twitter.rb >> processed/aggregate.txt

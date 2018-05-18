@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# download the IMDB Large Movie Review Dataset
+curl -L http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz -o aclImdb_v1.tar.gz
+
+# unzip the file
+tar -xvzf aclImdb_v1.tar.gz
+
+# remove unnecessary files and folders so that the aclImdb has just the desired 50,000 positive and negative reviews, properly structured
+rm aclImdb/README
+rm aclImdb/imdb.vocab
+rm aclImdb/imdbEr.txt
+rm aclImdb/test/labeledBow.feat
+rm aclImdb/test/urls_neg.txt
+rm aclImdb/test/urls_pos.txt
+rm aclImdb/train/labeledBow.feat
+rm aclImdb/train/unsupBow.feat
+rm aclImdb/train/urls_neg.txt
+rm aclImdb/train/urls_pos.txt
+rm aclImdb/train/urls_unsup.txt
+
+rm -rf aclImdb/train/unsup/

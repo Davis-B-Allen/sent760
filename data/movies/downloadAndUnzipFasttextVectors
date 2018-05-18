@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# download the Fasttext Vectors
+curl -L https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M.vec.zip -o wiki-news-300d-1M.vec.zip
+
+# unzip the vectors
+unzip wiki-news-300d-1M.vec.zip

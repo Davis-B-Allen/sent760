@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# download semeval training data
+curl -L https://www.dropbox.com/s/byzr8yoda6bua1b/2017_English_final.zip?dl=1 -o 2017_English_final.zip
+
+# unzip semeval training data
+unzip 2017_English_final.zip
+
+# download semeval test data
+curl http://alt.qcri.org/semeval2017/task4/data/uploads/semeval2017-task4-test.zip -o semeval2017-task4-test.zip
+
+# unzip semeval test data
+unzip semeval2017-task4-test.zip

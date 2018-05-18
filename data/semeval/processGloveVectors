@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# process the 200 dimension glove vectors
+python -m gensim.scripts.glove2word2vec --input  glove.twitter.27B.200d.txt --output glove.twitter.27B.200d.w2vformat.txt
