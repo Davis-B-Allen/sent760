@@ -178,7 +178,7 @@ for word, i in word_index.items():
 # Build an LSTM Network and use the pre-trained embeddings from GloVe,
 # but keep them static during training
 print(datetime.datetime.now())
-print("Building LSTM using fasttext pretrained vectors")
+print("Building LSTM using glove pretrained vectors")
 print("Vector length is 200")
 print("We are keeping the word vectors static and not allowing them to be modified during training")
 model2 = Sequential()
@@ -200,7 +200,7 @@ print("\n\n")
 # Build an LSTM Network and use the pre-trained embeddings from GloVe,
 # but allow them to be modified during training
 print(datetime.datetime.now())
-print("Building LSTM using fasttext pretrained vectors")
+print("Building LSTM using glove pretrained vectors")
 print("Vector length is 200")
 print("Word vectors can be modified during training")
 model3 = Sequential()
@@ -223,7 +223,7 @@ print("\n\n")
 # and allow them to be modified during training
 print(datetime.datetime.now())
 embedding_vector_length = 200
-print("Building BIDIRECTIONAL LSTM using fasttext pretrained vectors")
+print("Building BIDIRECTIONAL LSTM using glove pretrained vectors")
 print("Vector length is 200")
 print("Word vectors can be modified during training")
 model4 = Sequential()
