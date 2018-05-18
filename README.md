@@ -1,5 +1,48 @@
 Requires Python 2.7
 
+Requires Ruby >=2.0
+
+# Quick start:
+
+I've included some shell scripts to handle the downloading and processing of all relevant data. Here's an overview of getting started with them. (More complete detail for downloading and processing the data follows below in the Instructions and Data sections).
+
+1. Make sure you've got ruby >=2.0 and python 2.7 installed and accessible from the command line. If you're working in a virtualenv, make sure its the python 2.7 interpreter that's accessible (`python --version`)
+2. Install dependencies. From command line:
+```
+pip install -r requirements.txt
+```
+3. cd into data/movies
+4. Run the shell scripts there (you may need to chmod +x them):
+```
+./downloadAndUnzipMovieData
+```
+```
+./downloadAndUnzipFasttextVectors
+```
+5. cd into data/semeval
+6. Run the shell scripts there (you may need to chmod +x them):
+```
+./downloadAndUnzipSemEvalData
+```
+```
+./processSemEvalData
+```
+```
+./downloadAndUnzipGloveVectors
+```
+```
+./processGloveVectors
+```
+7. To run the models: cd into sent760/
+8. run the python scripts:
+```
+python movies.py
+```
+```
+python semeval.py
+```
+
+
 # Instructions
 
 First, install dependencies:
@@ -34,7 +77,7 @@ https://nlp.stanford.edu/projects/glove/
 For a direct download link to the relevant file, please use:
 http://nlp.stanford.edu/data/glove.twitter.27B.zip
 
-Please download the SemEval training data, SemEval test data, and GloVe twitter vectors using the direct download links. and place them in the:
+Please download the SemEval training data, SemEval test data, and GloVe twitter vectors using the direct download links, and place them in the:
 
 data/semeval
 
@@ -203,3 +246,90 @@ https://www.dropbox.com/sh/xfgav0d4w47yg8p/AAB9qchyH7SCxC5XJEH-NNWea?dl=0
 ## IMDB Large Movie Review Dataset
 
 For the IMDB movie review data:
+
+The data comes from Andrew Maas at Stanford:
+http://ai.stanford.edu/~amaas/data/sentiment/
+
+For the direct download link to the data, please use the following:
+http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz
+
+The pre-trained embeddings come from fasttext:
+https://fasttext.cc/docs/en/english-vectors.html
+
+For a direct download link to the vectors, please use the following:
+https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki-news-300d-1M.vec.zip
+
+Please download the Movie Data and the Fasttext vectors using the direct download links, and place them in the:
+
+data/movies
+
+folder. Then please unzip both files.
+
+After you unzip the IMDB movie data, you will need to remove unnecessary files and folders so that the load_files function can properly import the data with a correct and clean file structure. Please delete the following files and folders:
+```
+rm aclImdb/README
+rm aclImdb/imdb.vocab
+rm aclImdb/imdbEr.txt
+rm aclImdb/test/labeledBow.feat
+rm aclImdb/test/urls_neg.txt
+rm aclImdb/test/urls_pos.txt
+rm aclImdb/train/labeledBow.feat
+rm aclImdb/train/unsupBow.feat
+rm aclImdb/train/urls_neg.txt
+rm aclImdb/train/urls_pos.txt
+rm aclImdb/train/urls_unsup.txt
+
+rm -rf aclImdb/train/unsup/
+```
+At the end of this, the resultant filesystem structure should be as follows:
+
+* sent760
+  * data
+    * movies
+      * aclImdb/
+        * test/
+          * neg/
+            * 12500 files in here
+          * pos/
+            * 12500 files in here
+        * train/
+          * neg/
+            * 12500 files in here
+          * pos/
+            * 12500 files in here
+      * aclImdb_v1.tar.gz
+      * downloadAndUnzipFasttextVectors
+      * downloadAndUnzipMovieData
+      * wiki-news-300d-1M.vec
+      * wiki-news-300d-1M.vec.zip
+
+Once again, for convenience, I have included some shell scripts within the **data/movies** folder to perform the downloading and processing described above. You may need to first chmod +x them to make them executable.
+
+If you wish to use them, please open a terminal and navigate to the **data/movies** folder. You can then run them from the command line as follows:
+
+To download and unzip the IMDB Movie data:
+```
+./downloadAndUnzipMovieData
+```
+
+To download and unzip the Fasttext vectors:
+```
+./downloadAndUnzipFasttextVectors
+```
+
+# Running the models
+
+To run the models, please navigate to the **sent760/** folder, which should contain two scripts:
+
+* movies.py
+* semeval.py
+
+to run them, simply:
+```
+python movies.py
+```
+
+or:
+```
+python semeval.py
+```
