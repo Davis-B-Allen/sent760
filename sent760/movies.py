@@ -17,14 +17,18 @@ from keras.layers import LSTM
 from keras.layers import Bidirectional
 
 import datetime
+import os
+
 
 # fix random seed for reproducibility
 np.random.seed(7)
 
 max_words = 20000
 
-moviedirtrain = r'/Users/davisallen/Education/Hunter/Classes/CSCI 760 - Computer Linguistics/Projects/SentiProject/Data/ImdbLargeMovieData/aclImdb/train'
-moviedirtest = r'/Users/davisallen/Education/Hunter/Classes/CSCI 760 - Computer Linguistics/Projects/SentiProject/Data/ImdbLargeMovieData/aclImdb/test'
+# moviedirtrain = r'/Users/davisallen/Education/Hunter/Classes/CSCI 760 - Computer Linguistics/Projects/SentiProject/Data/ImdbLargeMovieData/aclImdb/train'
+# moviedirtest = r'/Users/davisallen/Education/Hunter/Classes/CSCI 760 - Computer Linguistics/Projects/SentiProject/Data/ImdbLargeMovieData/aclImdb/test'
+moviedirtrain = os.path.join(os.path.dirname(__file__), '../data/movies/aclImdb/train')
+moviedirtest = os.path.join(os.path.dirname(__file__), '../data/movies/aclImdb/test')
 
 print(datetime.datetime.now())
 
@@ -183,7 +187,11 @@ print("This may take some time")
 from gensim.models import FastText
 from gensim.models import KeyedVectors
 # en_model = FastText.load_fasttext_format('/Users/davisallen/Education/Hunter/Classes/CSCI 760 - Computer Linguistics/Projects/SentiProject/Data/fasttextVectors/wiki.en/wiki.en')
-en_model = KeyedVectors.load_word2vec_format('/Users/davisallen/Education/Hunter/Classes/CSCI 760 - Computer Linguistics/Projects/SentiProject/Data/fasttextVectors/wiki-news-300d-1M.vec')
+# en_model = KeyedVectors.load_word2vec_format('/Users/davisallen/Education/Hunter/Classes/CSCI 760 - Computer Linguistics/Projects/SentiProject/Data/fasttextVectors/wiki-news-300d-1M.vec')
+
+vector_file_prefix = os.path.join(os.path.dirname(__file__), '../data/movies/')
+vector_file_name = "wiki-news-300d-1M.vec"
+en_model = KeyedVectors.load_word2vec_format(vector_file_prefix + vector_file_name)
 
 embedding_matrix = np.zeros((len(word_index) + 1, 300))
 for word, i in word_index.items():
@@ -246,4 +254,3 @@ model4.fit(deep_x_train, y_train, nb_epoch=3, batch_size=64)
 scores4 = model4.evaluate(deep_x_test, y_test, verbose=0)
 print("Accuracy: %.2f%%" % (scores4[1]*100))
 print("\n\n")
-

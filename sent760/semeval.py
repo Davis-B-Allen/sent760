@@ -22,7 +22,12 @@ from keras.layers import Bidirectional
 from sklearn.metrics import classification_report
 from sklearn.metrics import recall_score
 
-file_prefix = "/Users/davisallen/Education/Hunter/Classes/CSCI 760 - Computer Linguistics/Projects/SentiProject/Data/SemEval2017/processed/"
+import os
+dir = os.path.dirname(__file__)
+file_prefix = os.path.join(os.path.dirname(__file__), '../data/semeval/processed/')
+
+
+# file_prefix = "/Users/davisallen/Education/Hunter/Classes/CSCI 760 - Computer Linguistics/Projects/SentiProject/Data/SemEval2017/processed/"
 
 fn1 = "twitter-2016test-A.txt"
 fn2 = "aggregate.txt"
@@ -196,7 +201,14 @@ print(datetime.datetime.now())
 print("Loading GloVe pretrained word vectors")
 print("This may take some time")
 from gensim.models import KeyedVectors
-en_model = KeyedVectors.load_word2vec_format('/Users/davisallen/Education/Hunter/Classes/CSCI 760 - Computer Linguistics/Projects/SentiProject/Data/GloveTwitterVectors/glove.twitter.27B.200d.w2vformat.txt')
+# en_model = KeyedVectors.load_word2vec_format('/Users/davisallen/Education/Hunter/Classes/CSCI 760 - Computer Linguistics/Projects/SentiProject/Data/GloveTwitterVectors/glove.twitter.27B.200d.w2vformat.txt')
+vector_file_prefix = os.path.join(os.path.dirname(__file__), '../data/semeval/')
+vector_file_name = "glove.twitter.27B.200d.w2vformat.txt"
+en_model = KeyedVectors.load_word2vec_format(vector_file_prefix + vector_file_name)
+
+
+
+
 
 embedding_matrix = np.zeros((len(word_index) + 1, 200))
 for word, i in word_index.items():
